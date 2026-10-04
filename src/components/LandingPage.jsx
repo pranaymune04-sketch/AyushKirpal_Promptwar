@@ -8,10 +8,11 @@ import {
   HelpCircle, 
   AlertTriangle, 
   CheckCircle2, 
-  ShieldCheck, 
-  Compass
+  ShieldCheck
 } from 'lucide-react';
 import { EXAMPLE_PRESETS } from '../data/examplePresets';
+import heroImg from '../assets/hero_illustration.jpg';
+import methodologyImg from '../assets/methodology.jpg';
 
 export default function LandingPage({ onStart, onSelectPreset }) {
   return (
@@ -36,21 +37,30 @@ export default function LandingPage({ onStart, onSelectPreset }) {
           <strong> The Blind Spot</strong> does the opposite — it stress-tests your reasoning, uncovers hidden cognitive traps, surfaces contradictory assumptions, and equips you to think more critically.
         </p>
 
-        <div className="hero-cta-group">
+        <div className="hero-cta-group" style={{ marginBottom: '2.5rem' }}>
           <button className="btn-primary" style={{ padding: '0.85rem 1.85rem', fontSize: '1.05rem' }} onClick={onStart}>
             <span>Analyze My Decision</span>
             <ArrowRight size={18} />
           </button>
         </div>
+
+        {/* Hero Showcase Image */}
+        <div style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-lg)', margin: '0 auto 1rem auto', maxWidth: '820px' }}>
+          <img 
+            src={heroImg} 
+            alt="The Blind Spot AI Decision Analysis Platform" 
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
+        </div>
       </section>
 
       {/* Preset Prompts Picker */}
-      <section style={{ marginTop: '2rem', marginBottom: '3.5rem' }}>
+      <section style={{ marginTop: '2.5rem', marginBottom: '3.5rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
             Try a Real Decision Scenario
           </h3>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-tertiary)' }}>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
             Select any sample dilemma below to pre-fill the analyzer instantly
           </p>
         </div>
@@ -62,6 +72,9 @@ export default function LandingPage({ onStart, onSelectPreset }) {
               className="feature-card" 
               style={{ cursor: 'pointer', padding: '1.25rem' }}
               onClick={() => onSelectPreset(preset)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelectPreset(preset); }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
                 <span className="badge-tag" style={{ margin: 0, fontSize: '0.75rem' }}>{preset.tag}</span>
@@ -78,7 +91,7 @@ export default function LandingPage({ onStart, onSelectPreset }) {
         </div>
       </section>
 
-      {/* 6 Core Dimensions Showcase Grid */}
+      {/* Methodology Visual & 6 Core Dimensions Showcase Grid */}
       <section style={{ marginTop: '3rem' }}>
         <div style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 800, textAlign: 'center', marginBottom: '0.5rem' }}>
           Systemic Critical Thinking Framework
@@ -86,9 +99,18 @@ export default function LandingPage({ onStart, onSelectPreset }) {
         <h2 style={{ textAlign: 'center', fontSize: '1.8rem', marginBottom: '0.5rem' }}>
           How The Blind Spot Scrutinizes Your Logic
         </h2>
-        <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', maxWidth: '650px', margin: '0 auto 2rem auto', fontSize: '0.95rem' }}>
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '650px', margin: '0 auto 2rem auto', fontSize: '0.95rem' }}>
           Our AI acts as an impartial devil’s advocate, evaluating your inputs across six high-impact dimensions.
         </p>
+
+        {/* Methodology Diagram Card */}
+        <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-md)', marginBottom: '2.5rem' }}>
+          <img 
+            src={methodologyImg} 
+            alt="Decision Intelligence Methodology Diagram" 
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
+        </div>
 
         <div className="grid-6-cards">
           <div className="feature-card">
